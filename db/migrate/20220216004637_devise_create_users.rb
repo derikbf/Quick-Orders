@@ -21,8 +21,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-      t.string :name
+      t.string :first_name
+      t.string :last_name
       t.integer :role, null: false
+
+      t.datetime :discarded_at
 
       t.timestamps null: false
     end

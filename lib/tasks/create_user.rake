@@ -1,13 +1,18 @@
-desc "Cria o primeiro usuario"
+desc "Create new User"
 task create_user: :environment do
-  puts "Digite o nome do usuario:"
-  name  = STDIN.gets.chomp
-  puts "Digite o email do usuario:"
+  puts "Type your first name:"
+  first_name  = STDIN.gets.chomp
+
+  puts "Type your last name:"
+  last_name  = STDIN.gets.chomp
+
+  puts "Type your email:"
   email = STDIN.gets.chomp
-  puts "Digite a senha do usuario:"
+
+  puts "Type your password:"
   senha = STDIN.gets.chomp
 
   ActiveRecord::Base.transaction do
-    User.create!(name: name, email: email, password: senha, role: 1)
+    User.create!(first_name: first_name, last_name: last_name, email: email, password: senha, role: 1)
   end
 end
