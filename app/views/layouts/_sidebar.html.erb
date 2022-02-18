@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto bg-light sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-right sticky-top">
+                <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto align-items-right">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                            <i class="fa-solid fa-house fs-3"></i>   HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                            <i class="fa-solid fa-desktop fs-3"></i>    DASHBOARD
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
+                            <i class="fa-solid fa-cart-shopping fs-3"></i>    PRODUCTOS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Categorias">
+                            <i class="fa-solid fa-utensils fs-3"></i>    CATEGORIAS
+                        </a>
+                    </li>
+                    <li>
+                      <%= link_to admin_employees_path, class: "nav-link py-3 px-2 text-gray", data: {bs: {toggle: :tooltip, placement: :right, original_title: 'Employees'}} do %>
+                        <i class="fa-solid fa-users fs-3"></i>    Employees
+                      <% end %>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Funcionarios">
+                            <i class="fa-solid fa-users fs-3"></i>    USUARIOS
+                        </a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-gray text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-regular fa-circle-user h3"></i>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+            <!-- content -->
+            <%= render "layouts/messages" %>
+            <%= yield %>
+        </div>
+    </div>
+</div>
