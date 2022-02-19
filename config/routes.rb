@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   namespace :admin do
-    resources :employees
+    resources :employees do
+      post :activate, on: :member
+    end
   end
   root to: 'home#index'
 end

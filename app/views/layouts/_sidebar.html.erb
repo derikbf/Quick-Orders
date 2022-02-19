@@ -23,16 +23,13 @@
                             <i class="fa-solid fa-utensils fs-3"></i>    CATEGORIAS
                         </a>
                     </li>
-                    <li>
-                      <%= link_to admin_employees_path, class: "nav-link py-3 px-2 text-gray", data: {bs: {toggle: :tooltip, placement: :right, original_title: 'Employees'}} do %>
-                        <i class="fa-solid fa-users fs-3"></i>    Employees
-                      <% end %>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 px-2 text-gray" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Funcionarios">
-                            <i class="fa-solid fa-users fs-3"></i>    USUARIOS
-                        </a>
-                    </li>
+                    <% if current_user.try(:admin?) %>
+                      <li>
+                        <%= link_to admin_employees_path, class: "nav-link py-3 px-2 text-gray", data: {bs: {toggle: :tooltip, placement: :right, original_title: 'Employees'}} do %>
+                          <i class="fa-solid fa-users fs-3"></i>    Employees
+                        <% end %>
+                      </li>
+                    <% end %>
                 </ul>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-gray text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">

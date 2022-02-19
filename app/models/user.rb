@@ -37,4 +37,24 @@ class User < ApplicationRecord
   def waiter?
     role == 3
   end
+
+  def role_name
+    return 'Admin' if role == 1
+    return 'Cook' if role == 2
+    return 'User' if role == 3
+  end
+
+  def active?
+    discarded_at.nil?
+  end
+
+  def destroy
+    self.discarded_at = Time.now
+    save
+  end
+
+  def activate!
+    self.discarded_at = nil
+    save
+  end
 end
