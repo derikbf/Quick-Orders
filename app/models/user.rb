@@ -41,7 +41,7 @@ class User < ApplicationRecord
   def role_name
     return 'Admin' if role == 1
     return 'Cook' if role == 2
-    return 'User' if role == 3
+    return 'Waiter' if role == 3
   end
 
   def active?
@@ -56,5 +56,9 @@ class User < ApplicationRecord
   def activate!
     self.discarded_at = nil
     save
+  end
+
+  def active_for_authentication?
+    super && active?
   end
 end
