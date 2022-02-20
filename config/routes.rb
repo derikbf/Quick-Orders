@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   get 'kitchen/index'
   get 'kitchen/view_order/:id', to: 'kitchen#view_order', as: 'kitchen_view_order'
   post 'kitchen/report_status/:id', to: 'kitchen#report_status', as: 'kitchen_report_status'
