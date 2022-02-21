@@ -1,0 +1,9 @@
+<%= search_form_for @search do |f| %>
+  <div class="form-group">
+    <%= f.label :client_name_cont, label: controller_name.classify.constantize.human_attribute_name(:clien_name) %>
+    <%= f.search_field :client_name_cont, class: "form-control" %>
+  </div>
+  <br>
+  <%= f.submit "Search", class: 'btn btn-secondary' %>
+  <%= f.button 'Clear', type: :reset, class: 'btn btn-light' %>
+<% end -%>

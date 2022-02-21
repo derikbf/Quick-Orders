@@ -23,7 +23,7 @@
 class User < ApplicationRecord
 
   include Discard::Model
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :role, presence: "Debe seleccionar un rol"
@@ -36,6 +36,10 @@ class User < ApplicationRecord
   validates :password, presence: { message: "Ingresar Contrasena" }
 
   enum role: [:admin, :mesero, :chef]
+
+  def role_name
+    return I18n.t("activerecord.attributes.user.role_name.#{role}")
+  end
 
   def name
     "#{first_name.capitalize} #{last_name.capitalize}"

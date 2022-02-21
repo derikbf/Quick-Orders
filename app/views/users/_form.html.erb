@@ -1,12 +1,12 @@
 <%= form_with(model: user) do |f| %>
 
   <div class="form-group">
-    <%= f.label I18n.t 'c.first_name' %><br />
+    <%= f.label :first_name %><br />
     <%= f.text_field :first_name, class: "form-control" %>
   </div>
   <br>
   <div class="form-group">
-    <%= f.label I18n.t 'c.last_name' %><br />
+    <%= f.label :last_name %><br />
     <%= f.text_field :last_name, class: "form-control" %>
   </div>
   <br>
@@ -16,12 +16,12 @@
   </div>
   <br>
   <div class="form-group">
-    <%= f.label I18n.t 'c.role' %><br />
+    <%= f.label :role %><br />
     <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role), {} , class: "form-control" %>
   </div>
   <br>
   <div class="form-group">
-    <%= f.label :password, "Senha" %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres minimos)</em>
     <% end %><br />
@@ -29,12 +29,12 @@
   </div>
   <br>
   <div class="form-group">
-    <%= f.label :password_confirmation, "Confirmar Senha" %><br />
+    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, { autocomplete: "password", class: "form-control" }%>
   </div>
   <br>
   <div class="form-group">
     <%= f.submit "Registrar" , class: "btn btn-secondary" %> <%= link_to "Voltar", users_path, class: "btn btn-warning" %>
   </div>
-    
+
 <% end %>

@@ -1,46 +1,60 @@
-<%= link_to 'Back', kitchen_index_path %></br>
-<% if @order.in_line? %>
-  <%= link_to "INICAR PREPARAMENTO", kitchen_report_status_path(@order.id, status: :preparing), method: :post, class: 'btn btn-success' %>
-<% elsif @order.preparing? %>
-  <%= link_to "PEDIDO PRONTO", kitchen_report_status_path(@order.id, status: :ready), method: :post, class: 'btn btn-warning' %>
-<% end %>
-
-<p>
-  <strong>Client name:</strong>
-  <%= @order.client_name %>
-</p>
-
-<p>
-  <strong>Table:</strong>
-  <%= @order.table %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @order.status_name %>
-</p>
-
-<h3>Itens</h3>
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Observation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.order_products.each do |op| %>
-      <tr>
-        <td><%= op.product.name %></td>
-        <td><%= op.quantity %></td>
-        <td><%= op.observation %></td>
-      </tr>
+<div class="card bg-dark border-light">
+  <div class="card-header">
+    <% if @order.in_line? %>
+      <%= link_to "INICAR PREPARAMENTO", kitchen_report_status_path(@order.id, status: :preparing), method: :post, class: 'btn btn-success' %>
+    <% elsif @order.preparing? %>
+      <%= link_to "PEDIDO PRONTO", kitchen_report_status_path(@order.id, status: :ready), method: :post, class: 'btn btn-warning' %>
     <% end %>
-  </tbody>
-</table>
+    <br>
+    <br>
+    <p>
+      <strong>Cliente:</strong>
+      <%= @order.client_name %>
+    </p>
+
+    <p>
+      <strong>Table:</strong>
+      <%= @order.table %>
+    </p>
+
+    <p>
+      <strong>Atendente:</strong>
+      <%= @order.user.name %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <span class="badge <%= status_klass(@order.status) %>"><%= @order.status_name %></span>
+    </p>
+ 
+  </div>
+  <div class="card-body">
+    <h3>Itens</h3>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Observation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_products.each do |op| %>
+          <tr>
+            <td><%= op.product.name %></td>
+            <td><%= op.quantity %></td>
+            <td><%= op.observation %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  </div>
+  <div class="card-footer">
+  
+  </div>
+</div>
+
+<br>
+
+

@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      user: 'Funcionário'
+    attributes:
+      user:
+        first_name: 'Nome'
+        last_name: 'Sobrenome'
+        role: 'Função'
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'
+        email: 'E-mail'
+        role_name:
+          admin: 'Administrador'
+          mesero: 'Atendente'
+          chef: 'Cozinha'

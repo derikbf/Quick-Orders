@@ -1,15 +1,15 @@
 <div class="card bg-dark border-light">
     <div class="card-header">
-        <h2><strong>Nome Funcionario:</strong> <%= @user.name %></h2>
+        <h2><strong><%= User.human_attribute_name(:first_name) %>:</strong> <%= @user.name %></h2>
     </div>
     <div class="card-body">
         <p>
-          <strong>Email:</strong> <%= @user.email %>
+          <strong><%= User.human_attribute_name(:email) %>:</strong> <%= @user.email %>
         </p>
         <p>
-          <strong>Rol:</strong> <%= @user.role %> 
+          <strong><%= User.human_attribute_name(:role) %>:</strong> <%= @user.role_name %> 
         </p>
-        
+
     </div>
     <div class="card-footer">
         <%= link_to "Editar", edit_user_path(@user),class: "btn btn-secondary" %><%= link_to "Voltar", users_path, class: "btn btn-warning"  %>

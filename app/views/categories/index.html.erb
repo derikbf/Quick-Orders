@@ -20,7 +20,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>NOME</th>
+          <th><%= Category.human_attribute_name(:title) %></th>
           <th class="text-center">EDITAR/DELETAR</th>
           <% if current_user.admin? %>
             <th class="text-center">DELETADO</th>

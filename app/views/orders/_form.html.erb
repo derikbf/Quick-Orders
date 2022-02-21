@@ -1,34 +1,23 @@
 <%= form_with(model: order) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field form-group">
     <%= form.label :client_name %>
     <%= form.text_field :client_name, class: 'form-control' %>
   </div>
-
+  <br>
   <div class="field form-group">
     <%= form.label :table %>
     <%= form.number_field :table, class: 'form-control' %>
   </div>
-
+  <br>
   <%= form.fields_for :order_products do |order_product|  %>
     <%= render 'order_product_fields', f: order_product %>
   <% end %>
+  <br>
   <div class="links">
-    <%= link_to_add_association 'Add Item', form, :order_products %>
+    <%= link_to_add_association 'Add Item', form, :order_products, class: "btn btn-info" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Cadastrar", class: "btn btn-secondary", data: { confirm: 'Tem certeza?' } %><%= link_to "Voltar", orders_url, class: "btn btn-warning" %>
   </div>
 <% end %>

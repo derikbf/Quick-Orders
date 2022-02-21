@@ -36,9 +36,9 @@
                         <td><%= product.description %></td>
                         <td><%= product.category.title if product.category.present? %></td>
                         <td class="text-center">
-                        <%= link_to '<i class="fa-solid fa-search"></i>'.html_safe, product, class: "btn btn-info" %>
-                        <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_product_path(product), class: "btn btn-secondary" %>
-                        <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, product, class: "btn btn-danger", method: :delete, data: { confirm: 'Tem certeza?' } %>
+                            <%= link_to '<i class="fa-solid fa-search"></i>'.html_safe, product, class: "btn btn-info" %>
+                            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_product_path(product), class: "btn btn-secondary" %>
+                            <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, product, class: "btn btn-danger", method: :delete, data: { confirm: 'Tem certeza?' } %>
                         </td>
                     </tr>
                     <% end %>

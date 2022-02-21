@@ -20,9 +20,9 @@
                 <thead>
                     <tr>
                     <th>ID</th>
-                    <th>EMAIL</th>
-                    <th>NOME</th>
-                    <th>ROL</th>
+                    <th><%= User.human_attribute_name(:email) %></th>
+                    <th><%= User.human_attribute_name(:first_name) %></th>
+                    <th><%= User.human_attribute_name(:role) %></th>
                     <th class="text-center">EDITAR/DELETAR</th>
                     </tr>
                 </thead>
@@ -33,7 +33,7 @@
                         <td><%= user.id %></td>
                         <td><%= user.email %></td>
                         <td><%= user.first_name.capitalize %> <%= user.last_name.capitalize %></td>
-                        <td><%= user.role %></td>
+                        <td><%= user.role_name %></td>
                         <td class="text-center">
                         <%= link_to '<i class="fa-solid fa-search"></i>'.html_safe, user, class: "btn btn-info" %>
                         <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_user_path(user), class: "btn btn-secondary" %>

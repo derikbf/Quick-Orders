@@ -76,6 +76,11 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def collection
+      @search = Order.ransack(params[:q])
+      @orders = @search.result
+    end
+
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:client_name, :table, :user_id, :status, order_products_attributes: [:id, :quantity, :observation, :product_id, :_destroy])

@@ -1,15 +1,27 @@
-<div class="nested-fields border border-white">
-  <div class="field form-group">
-    <%= f.label :product_id %>
-    <%= f.select :product_id, options_for_select(Product.all.pluck(:name, :id), f.object.product_id), {include_blank: true} , class: "form-control" %>
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="field form-group">
+        <%= f.label :product_id %>
+        <%= f.select :product_id, options_for_select(Product.all.pluck(:name, :id), f.object.product_id), {include_blank: true} , class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="field form-group">
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-10 col-lg-4">
+      <div class="field form-group">
+        <%= f.label :observation %>
+        <%= f.text_field :observation, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-2 col-lg-1 text-center">
+      <br>
+      <%= link_to_remove_association '<i class="fa-solid fa-trash"></i>'.html_safe, f, class: "btn btn-danger" %>
+    </div>
   </div>
-  <div class="field form-group">
-    <%= f.label :quantity %>
-    <%= f.text_field :quantity, class: 'form-control' %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :observation %>
-    <%= f.text_field :observation, class: 'form-control' %>
-  </div>
-  <%= link_to_remove_association 'Remove item', f %>
+    <br>
 </div>
