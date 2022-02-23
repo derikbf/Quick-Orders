@@ -11,6 +11,11 @@ class DashboardController < ApplicationController
 
     @order_quantity = load_order_products(start_date, end_date).count
     @total_renevue = load_order_products(start_date, end_date).includes(:product).sum(&:price)
+
+    @users_orders = User.includes(:orders).group("users.first_name").pluck("users.first_name, count(orders.id)")
+
+    @orders = Order.group(:status).count
+
   end
 
   private

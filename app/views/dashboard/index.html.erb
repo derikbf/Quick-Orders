@@ -35,6 +35,20 @@
       <%= dashboard_card("Faturamento") do %>
         <%= number_to_currency @total_renevue %>
       <% end %>
+
+      <%= dashboard_card("Usuarios Cadastrados") do %>
+        <%= line_chart User.group_by_day(:created_at).count %>
+      <% end %>
+
+      <%= dashboard_card("Usuarios Pedidos") do %>
+        <%= pie_chart @users_orders %>
+      <% end %>
+
+      <%= dashboard_card("Pedidos Estado") do %>
+        <%= pie_chart @orders %>
+      <% end %>
+
+      
     </div>
     
   </div>

@@ -9,6 +9,7 @@
 #  status      :integer          default("in_line")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  total       :decimal(, )
 #
 FactoryBot.define do
   factory :order do

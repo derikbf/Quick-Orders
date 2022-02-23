@@ -25,6 +25,7 @@
               <th class="text-center">ID</th>
               <th class="text-center">NOME</th>
               <th class="text-center">DESCRIÇÃO</th>
+              <th class="text-center">PRICE</th>
               <th class="text-center">CATEGORIA</th>
               <% if current_user.admin? %>
                 <th class="text-center">REMOVIDO</th>
@@ -39,6 +40,7 @@
                 <td><%= product.id %></td>
                 <td><%= product.name.truncate(25) %></td>
                 <td><%= product.description.truncate(25) %></td>
+                <td class="text-center"><%= number_to_currency product.price %></td>
                 <td><%= product.category.title if product.category.present? %></td>
                 <% if current_user.admin? %> 
                   <td class="text-center"><%= product.discarded? ? '<i class="fas fa-check-double"></i>'.html_safe : '' %></td>

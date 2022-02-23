@@ -11,7 +11,7 @@
   <br>
   <div class="form-group">
     <%= f.label :category_id_eq, label: controller_name.classify.constantize.human_attribute_name(:role) %>
-    <%= f.select :category_id_eq, options_for_select(Category.all.pluck(:title, :id), @search.category_id_eq),{},{ include_blank: true, class: "form-control" } %>
+    <%= f.select :category_id_eq, options_for_select(Category.all.pluck(:title, :id), @search.category_id_eq),{ include_blank: true },{ class: "form-control" } %>
   </div>
   <br>
   <h4><%= controller_name.classify.constantize.human_attribute_name(:price) %></h4>

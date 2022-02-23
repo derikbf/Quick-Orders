@@ -11,6 +11,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import "chartkick/chart.js"
+
 require("@popperjs/core")
 require("jquery")
 require("@nathanvda/cocoon")
@@ -45,3 +47,6 @@ document.addEventListener("turbolinks:load", () => {
 
 // FontAwesome free for icons
 import "@fortawesome/fontawesome-free/css/all"
+
+
+import '../../assets/javascripts/serviceworker-companion.js';

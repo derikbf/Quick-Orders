@@ -9,6 +9,7 @@
 #  status      :integer          default("in_line")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  total       :decimal(, )
 #
 class Order < ApplicationRecord
   validates :client_name, presence: true, length: { maximum: 40 }
@@ -21,7 +22,19 @@ class Order < ApplicationRecord
   has_many :order_products, inverse_of: :order
   accepts_nested_attributes_for :order_products, allow_destroy: true
 
+  before_save :set_total
+
   def status_name
     return I18n.t("activerecord.attributes.order.status_name.#{status}")
+  end
+
+
+  private
+
+  def set_total
+    self.total = 0
+    self.order_products.each do |item|
+      self.total += item.product.price * item.quantity
+    end
   end
 end

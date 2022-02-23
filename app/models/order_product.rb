@@ -9,6 +9,8 @@
 #  observation :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  price       :decimal(, )
+#  total       :decimal(, )
 #
 class OrderProduct < ApplicationRecord
   validates :observation, length: { maximum: 150 }
@@ -17,8 +19,18 @@ class OrderProduct < ApplicationRecord
 
   belongs_to :order
   belongs_to :product
+  before_save :set_price_and_total
 
-  def price
-    product.price * quantity
+
+   def price
+     product.price * quantity
+   end
+
+  private
+
+  def set_price_and_total
+    self.price = product.price
+    self.total = self.price * quantity
   end
+  
 end

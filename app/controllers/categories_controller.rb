@@ -70,7 +70,7 @@ class CategoriesController < ApplicationController
     # Set category list and @search object for the search form
     def collection
       @search = Category.ransack(params[:q])
-      @categories = @search.result
+      @categories = @search.result.order(created_at: :asc)
     end
 
     # Use callbacks to share common setup or constraints between actions.

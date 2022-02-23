@@ -16,7 +16,7 @@
   <br>
   <div class="form-group">
     <%= f.label :role_eq, label: controller_name.classify.constantize.human_attribute_name(:role) %>
-    <%= f.select :role_eq, options_for_select(User.roles.map {|key, value| [key.titleize, value]}, @search.role_eq), {},{ include_blank: true, class: "form-control" } %>
+    <%= f.select :role_eq, options_for_select(User.roles.map {|key, value| [key.titleize, value]}, @search.role_eq), { include_blank: true },{ class: "form-control" } %>
   </div>
   <br>
   <%= f.submit "Search", class: 'btn btn-secondary' %>

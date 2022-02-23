@@ -71,7 +71,7 @@ class ProductsController < ApplicationController
   # Set Product list and @search object for the search form
   def collection
     @search = Product.ransack(params[:q])
-    @products = @search.result
+    @products = @search.result.order(created_at: :asc)
   end
 
   def set_product

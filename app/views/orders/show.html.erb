@@ -6,6 +6,21 @@
         <strong><%= Order.human_attribute_name(:status) %>:</strong>
         <span class="badge <%= status_klass(@order.status) %>"><%= @order.status_name %></span>
       </p>
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <% if @order.ready? %>
+              <%= link_to "MARCAR COMO ENTREGUE", report_status_order_path(@order.id, status: :finished), method: :patch, class: 'btn btn-success' %>
+              <br>
+            <% end %>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <% unless @order.finished? %>
+              <%= link_to "CANCELAR PEDIDO", report_status_order_path(@order.id, status: :canceled), method: :patch, data: { confirm: "Tem certeza?" } , 
+                                                                      class: "btn btn-danger" unless @order.canceled? %>
+              <br>
+            <% end %>
+          </div>
+        </div>
       
     </div>
     <div class="card-body m-3" style="margin-top:-4px">
@@ -24,33 +39,33 @@
         <strong><%= Order.human_attribute_name(:user) %>:</strong>
         <%= @order.user.name %>
       </p>
-      
-      <% if @order.ready? %>
-        <%= link_to "MARCAR COMO ENTREGUE", report_status_order_path(@order.id, status: :finished), method: :post, class: 'btn btn-success' %>
-      <% end %>
 
       <h3>Itens</h3>
       <hr class="divisor">
-      <table class="table table-dark table-striped">
-      <thead>
-        <tr>
-          <th><%= OrderProduct.human_attribute_name(:product_id) %></th>
-          <th><%= OrderProduct.human_attribute_name(:quantity) %></th>
-          <th><%= OrderProduct.human_attribute_name(:observation) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @order.order_products.each do |op| %>
-          <tr>
-            <td><%= op.product.name %></td>
-            <td><%= op.quantity %></td>
-            <td><%= op.observation %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th><%= OrderProduct.human_attribute_name(:product_id) %></th>
+              <th><%= OrderProduct.human_attribute_name(:quantity) %></th>
+              <th><%= OrderProduct.human_attribute_name(:observation) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_products.each do |op| %>
+              <tr>
+                <td><%= op.product.name %></td>
+                <td><%= op.quantity %></td>
+                <td><%= op.observation %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, orders_path, class: "btn btn-secondary text-white icons-margin"  %>
-    <%= link_to 'Edita', edit_order_path(@order), class: "btn btn-secondary" %>
+    <% unless @order.canceled? || @order.finished? %>
+      <%= link_to 'Edita', edit_order_path(@order), class: "btn btn-secondary" if (can? :edit, Order) %>
+    <% end %>
     </div>
   </div>
 </div>

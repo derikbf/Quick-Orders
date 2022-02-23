@@ -68,3 +68,10 @@ gem 'cancancan'
 
 #Soft Delete
 gem 'discard'
+
+#charts
+gem "chartkick"
+gem "groupdate"
+gem "serviceworker-rails", "~> 0.6.0"
+
+gem "webpacker-pwa", "~> 0.1.0"

@@ -22,8 +22,10 @@
         <table class="table table-dark table-striped">
           <thead class="text-center">
             <tr>
+              <th>ID</th>
               <th><%= Order.human_attribute_name(:client_name).upcase %></th>
               <th><%= Order.human_attribute_name(:table).upcase %></th>
+              <th><%= Order.human_attribute_name(:total).upcase %></th>
               <th><%= Order.human_attribute_name(:user).upcase %></th>
               <th><%= Order.human_attribute_name(:status).upcase %></th>
               <th class="text-center">OPÇÕES</th>
@@ -33,13 +35,18 @@
           <tbody>
             <% @orders.each do |order| %>
               <tr>
+                <td class="text-center"><%= order.id %></td>
                 <td><%= order.client_name %></td>
                 <td class="text-center"><%= order.table %></td>
+                <td class="text-center"><%= number_to_currency order.total %></td>
                 <td class="text-center"><%= order.user.name %></td>
+                
                 <td class="text-center"><span class="badge <%= status_klass(order.status) %>"><%= order.status_name %></span></td>
                 <td class="text-center">
                   <%= link_to '<i class="fa-solid fa-eye"></i>'.html_safe, order, class: "btn btn-secondary icons-margin" %>
-                  <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_order_path(order), class: "btn btn-secondary icons-margin" %>
+                  <% unless order.canceled? || order.finished? %>  
+                    <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_order_path(order), class: "btn btn-secondary icons-margin" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

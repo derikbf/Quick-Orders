@@ -4,6 +4,21 @@
     <%= f.search_field :client_name_cont, class: "form-control" %>
   </div>
   <br>
-  <%= f.submit "Search", class: 'btn btn-secondary' %>
-  <%= f.button 'Clear', type: :reset, class: 'btn btn-light' %>
+  <div class="form-group">
+    <%= f.label :table_eq, label: controller_name.classify.constantize.human_attribute_name(:table) %>
+    <%= f.search_field :table_eq, class: "form-control" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.label :user_id_eq, label: controller_name.classify.constantize.human_attribute_name(:user_id) %>
+    <%= f.select :user_id_eq, options_for_select(User.all.pluck(:first_name, :id), @search.user_id_eq), { include_blank: true },{ class: "form-control" } %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.label :status_eq, label: controller_name.classify.constantize.human_attribute_name(:status) %>
+    <%= f.select :status_eq, options_for_select(Order.statuses.map {|key, value| [status_name_view(key), value]}, @search.status_eq), { include_blank: true },{ class: "form-control" } %>
+  </div>
+  <br>
+  <%= f.submit "Pesquisar", class: 'btn btn-secondary' %>
+  <%= f.button 'Limpar', type: :reset, class: 'btn btn-light' %>
 <% end -%>

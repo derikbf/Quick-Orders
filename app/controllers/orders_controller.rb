@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
 
     def collection
       @search = Order.ransack(params[:q])
-      @orders = @search.result
+      @orders = @search.result.order(created_at: :desc)
     end
 
     # Only allow a list of trusted parameters through.

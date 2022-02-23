@@ -35,6 +35,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :password, presence: true
 
+  has_many :orders
+
   enum role: [:admin, :mesero, :chef]
 
   def role_name

@@ -9,6 +9,8 @@
 #  observation :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  price       :decimal(, )
+#  total       :decimal(, )
 #
 require 'rails_helper'
 
