@@ -13,9 +13,11 @@
   </head>
 
   <body class="bg-dark">
-
-    <%= render "layouts/navigation/navbar" %>
-    <hr class="text-gray">
+    
+    <% if user_signed_in? %>
+      <%= render "layouts/navigation/navbar" %>
+      <hr class="text-gray">
+    <% end %>
     <div class="container text-white">
         <%= render "layouts/messages" %>
 
