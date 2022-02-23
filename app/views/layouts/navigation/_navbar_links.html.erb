@@ -1,18 +1,18 @@
 <li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-desktop"></i> Dashboard'.html_safe, dashboard_index_path, class: "nav-link" if current_user.admin? %>
+    <%= link_to '<i class="fa-solid fa-desktop"></i><br/> Dashboard'.html_safe, dashboard_index_path, class: "nav-link text-center mx-1" if current_user.admin? %>
 </li>
 <li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-cart-shopping"></i> Produtos'.html_safe, products_path, class: "nav-link" %>
+    <%= link_to '<i class="fa-solid fa-cart-shopping"></i><br/> Produtos'.html_safe, products_path, class: "nav-link text-center mx-1" %>
 </li>
 <li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-utensils"></i> Categorias'.html_safe, categories_path, class: "nav-link" %>
+    <%= link_to '<i class="fa-solid fa-utensils"></i><br/> Categorias'.html_safe, categories_path, class: "nav-link text-center mx-1" %>
 </li>
 <li class="nav-item">
-    <%= link_to '<i class="fas fa-backspace"></i> Pedidos'.html_safe, orders_path, class: "nav-link" unless current_user.chef? %>
+    <%= link_to '<i class="fas fa-backspace"></i><br/> Pedidos'.html_safe, orders_path, class: "nav-link text-center mx-1" unless current_user.chef? %>
 </li>
 <li class="nav-item">
-    <%= link_to '<i class="fas fa-users"></i> Funcionarios'.html_safe, users_path, class: "nav-link" if current_user.admin? %>
+    <%= link_to '<i class="fas fa-users"></i><br/> Funcionarios'.html_safe, users_path, class: "nav-link text-center mx-1" if current_user.admin? %>
 </li>
 <li class="nav-item">
-    <%= link_to '<i class="fas fa-users"></i> Cozinha'.html_safe, kitchen_index_path, class: "nav-link" unless current_user.mesero? %>
+    <%= link_to '<i class="fas fa-users"></i><br/> Cozinha'.html_safe, kitchen_index_path, class: "nav-link text-center mx-1" unless current_user.mesero? %>
 </li>
