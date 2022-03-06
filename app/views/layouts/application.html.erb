@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>QuickOrders</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,17 +13,29 @@
     <link rel="manifest" href="/manifest.json">
   </head>
 
-  <body class="bg-dark">
-    
-    <% if user_signed_in? %>
-      <%= render "layouts/navigation/navbar" %>
-      <hr class="text-gray">
-    <% end %>
-    <div class="container text-white">
-        <%= render "layouts/messages" %>
-
-        <%= yield %>
+  <body class="bg-gray-darker text-white">
+    <div class="container-fluid overflow-hidden">
+      <div class="row vh-100 overflow-auto">
+        <% if user_signed_in? %>
+          <%= render "layouts/navigation/navbar" %>
+        <% end %>
+        <div class="col d-flex flex-column h-sm-100">
+          <main class="row overflow-visible">
+            
+              <%= render "layouts/messages" %>
+              <%= yield %>
+            
+          </main>
+          <footer class="footer row bg-gray py-4 mt-auto">
+            <div class="col text-center">
+              PEDIDO<strong>RÁPIDO</strong>©<a href="https://github.com/derikbf/Quick-Orders" class="text-decoration-none">Github</a>
+            </div>
+          </footer>
+        </div>
+      </div>
     </div>
+    
+   
 
 
   </body>

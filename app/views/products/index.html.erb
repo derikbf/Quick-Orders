@@ -1,64 +1,96 @@
-<div class="container py-5 h-100">
-  <div class="card bg-dark shadow">
-    <div class="card-header bg-dark m-3 p-3">
-      
-      <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <h3 class="d-inline-block">Produtos Cadastrados</h3>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="d-flex justify-content-end">
-            <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_product_path, class: "btn btn-secondary icons-margin" if can? :new, Product %>
-            <%= search do %>
-              <%= render 'search' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-dark table-striped">
-          <thead>
-            <tr>
-              <th class="text-center">ID</th>
-              <th class="text-center">NOME</th>
-              <th class="text-center">DESCRIÇÃO</th>
-              <th class="text-center">PRICE</th>
-              <th class="text-center">CATEGORIA</th>
-              <% if current_user.admin? %>
-                <th class="text-center">REMOVIDO</th>
-              <% end %>
-              <th class="text-center">OPÇÕES</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @products.each do |product| %>
-              <tr>
-                <td><%= product.id %></td>
-                <td><%= product.name.truncate(25) %></td>
-                <td><%= product.description.truncate(25) %></td>
-                <td class="text-center"><%= number_to_currency product.price %></td>
-                <td><%= product.category.title if product.category.present? %></td>
-                <% if current_user.admin? %> 
-                  <td class="text-center"><%= product.discarded? ? '<i class="fas fa-check-double"></i>'.html_safe : '' %></td>
-                <% end %>
-                <td class="text-center">
-                    <%= link_to '<i class="fa-solid fa-eye"></i>'.html_safe, product, class: "btn btn-secondary icons-margin" %>
-                    <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_product_path(product), 
-                        class: "btn btn-secondary icons-margin" if can? :edit, Product %>
-                    <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, product, class: "btn btn-danger icons-margin", 
-                        method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, Product %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-    
+<div class="navbar navbar-light navbar-expand bg-gray shadow mb-4 pt-3 pb-3 topbar static-top">
+  <div class="container-fluid">
+    <h2 class="mb-0">Listagem de Produtos</h2>
+    <ul class="navbar-nav flex-nowrap ms-auto">
+      <li class="nav-item mx-1">
+        <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_product_path, class: "btn btn-primary icons-margin" if can? :new, Product %>
+      </li>
+      <li class="nav-item mx-1">
+        <%= search do %>
+          <%= render 'search' %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 </div>
+
+<div class="table-responsive">
+  <table class="table bg-gray-darker text-white table-borderless">
+    <thead class="align-middle">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th >Preço</th>
+        <th>Categoria</th>
+        <th class="text-center d-none d-sm-block">Opções</th>
+      </tr>
+    </thead>
+    
+    <tbody class="align-middle">
+      <% @products.each do |product| %>
+        <tr>
+          <% unless product.discarded? %>
+            <td><%= product.id %></td>
+          <% else %>
+            <td><i class="fa-solid fa-xmark"></i></td>
+          <% end %>
+          <td><%= link_to product.name.truncate(25), product, class: 'text-decoration-none text-white' %></td>
+          <td><%= number_to_currency product.price %></td>
+          <td><%= product.category.title if product.category.present? %></td>
+          <td class="text-center d-none d-sm-block">
+              <% unless product.discarded? %>
+                <%= link_to '<i class="fa-solid fa-eye"></i>'.html_safe, product, class: "btn btn-secondary icons-margin" %>
+                <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_product_path(product),
+                  class: "btn btn-secondary icons-margin" if can? :edit, Product %>
+                <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, product, class: "btn btn-danger icons-margin", 
+                  method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, Product %>
+              <% else %>
+                <%= link_to 'Ver registro', product, class: "text-decoration-none text-muted" %>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!--
+<div class="table-responsive">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">NOME</th>
+        <th class="text-center">PRICE</th>
+        <th class="text-center">CATEGORIA</th>
+        <% if current_user.admin? %>
+          <th class="text-center">REMOVIDO</th>
+        <% end %>
+        <th class="text-center">OPÇÕES</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name.truncate(25) %></td>
+          <td class="text-center"><%= number_to_currency product.price %></td>
+          <td><%= product.category.title if product.category.present? %></td>
+          <% if current_user.admin? %> 
+            <td class="text-center"><%= product.discarded? ? '<i class="fas fa-check-double"></i>'.html_safe : '' %></td>
+          <% end %>
+          <td class="text-center">
+              <%= link_to '<i class="fa-solid fa-eye"></i>'.html_safe, product, class: "btn btn-secondary icons-margin" %>
+              <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_product_path(product), 
+                  class: "btn btn-secondary icons-margin" if can? :edit, Product %>
+              <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, product, class: "btn btn-danger icons-margin", 
+                  method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, Product %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+-->
