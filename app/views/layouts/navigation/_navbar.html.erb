@@ -1,23 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-2">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo1.png", width: "115px" ) %></a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if current_user %>  
-          <%= render "layouts/navigation/navbar_links" %>
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <%= "<i class='fas fa-user-circle'></i><br/> #{current_user.first_name}".html_safe %>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to '<i class="fas fa-sign-out-alt"></i> Encerrar sessão'.html_safe, destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </ul>
-          </li>
-        <% end %>
+<div class="col-lg-3 col-xl-2 px-lg-3 px-0 d-flex sticky-top bg-gray-light shadow">
+  <div class="d-flex flex-lg-column flex-row flex-grow-1 align-items-center align-items-lg-start px-lg-3 px-md-3 pt-lg-4 text-white">
+      <a href="<%= root_path %>" class="d-flex align-items-center pb-lg-3 mb-lg-0 me-lg-auto text-white text-decoration-none">
+          <span class="fs-5"><i class="fas fa-hamburger fa-rotate-by m-2" style="--fa-rotate-angle:-15deg;"></i><span class="d-none d-md-inline">PEDIDO<strong>RÁPIDO</strong></span></span>
+      </a>
+      <ul class="nav nav-pills m-2 flex-lg-column flex-row flex-nowrap flex-shrink-1 flex-lg-grow-0 flex-grow-1 mb-lg-auto mb-0 justify-content-center align-items-center align-items-lg-start" id="menu">
+        <%= render "layouts/navigation/navbar_links" %>
       </ul>
-    </div>
+      <div class="dropdown py-lg-4 mt-lg-auto ms-auto ms-lg-0 flex-shrink-1">
+          <a href="#" class=" d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= "<i class='fas fa-user-circle mx-2'></i> #{current_user.first_name}".html_safe %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-lgall shadow" aria-labelledby="dropdownUser1">
+            <li>
+              <%= link_to '<i class="fas fa-sign-out-alt"></i> Encerrar sessão'.html_safe, destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+      </div>
   </div>
-</nav>
+</div>

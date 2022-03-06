@@ -1,18 +1,41 @@
-<li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-desktop"></i><br/> Dashboard'.html_safe, dashboard_index_path, class: "nav-link text-center mx-1" if current_user.admin? %>
+<li>
+    <% if current_user.admin? %>
+        <%= link_to dashboard_index_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+            <i class="fa-solid fa-desktop"></i><span class="text-decoration-none ms-1 d-none d-lg-inline p-2">Dashboard</span>
+        <% end %>
+    <% end %>
 </li>
-<li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-cart-shopping"></i><br/> Produtos'.html_safe, products_path, class: "nav-link text-center mx-1" %>
+<li>
+    <%= link_to products_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+        <i class="fa-solid fa-cart-shopping"></i><span class="text-decoration-none ms-1 d-none d-lg-inline p-2">Produtos</span>
+    <% end %>
 </li>
-<li class="nav-item">
-    <%= link_to '<i class="fa-solid fa-utensils"></i><br/> Categorias'.html_safe, categories_path, class: "nav-link text-center mx-1" %>
+<li>
+    <%= link_to categories_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+        <i class="fa-solid fa-list"></i><span class="text-decoration-none ms-1 d-none d-lg-inline p-2">Categorias</span>
+    <% end %>
 </li>
-<li class="nav-item">
-    <%= link_to '<i class="fas fa-backspace"></i><br/> Pedidos'.html_safe, orders_path, class: "nav-link text-center mx-1" unless current_user.chef? %>
+<li>
+    <% unless current_user.chef? %>
+        <%= link_to orders_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+            <i class="fa-solid fa-table-list"></i><span class="text-decoration-none ms-1 d-none d-lg-inline p-2">Pedidos</span>
+        <% end %>
+    <% end %>
 </li>
-<li class="nav-item">
-    <%= link_to '<i class="fas fa-users"></i><br/> Funcionarios'.html_safe, users_path, class: "nav-link text-center mx-1" if current_user.admin? %>
+<li>
+    <% if current_user.admin? %>
+        <%= link_to users_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+            <i class="fa-solid fa-users"></i><span class="ms-1 d-none d-lg-inline p-2">Funcionários</span>
+        <% end %>
+    <% end %>
+
 </li>
-<li class="nav-item">
-    <%= link_to '<i class="fas fa-users"></i><br/> Cozinha'.html_safe, kitchen_index_path, class: "nav-link text-center mx-1" unless current_user.mesero? %>
+<li>
+    <% unless current_user.mesero? %>
+        <%= link_to kitchen_index_path, class: 'nav-link text-white px-lg-0 px-2' do %>
+            <i class="fa-solid fa-utensils"></i><span class="ms-1 d-none d-lg-inline p-2">Cozinha</span>
+        <% end %>
+    <% end %>
 </li>
+
+   
