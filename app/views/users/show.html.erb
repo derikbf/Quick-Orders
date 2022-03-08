@@ -7,8 +7,10 @@
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="d-flex justify-content-end">
-          <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, users_path, class: "btn btn-secondary text-white icons-margin"  %>
-            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_user_path(@user),class: "btn btn-secondary" %>
+            <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, users_path, class: "btn btn-secondary text-white icons-margin"  %>
+            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_user_path(@user),class: "btn btn-secondary icons-margin" %>
+            <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, @user, class: "btn btn-danger ", 
+                        method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, User %>
           </div>
         </div>
       </div>
