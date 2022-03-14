@@ -1,35 +1,30 @@
-
+<%= form_with(model: product, class: 'row px-4') do |form| %>
+  <div class="col-xl-4 col-md-4 col-sm-6">
+    <%= form.label :name, "Nome", class: 'form-label' %>
+    <%= form.text_field :name, class: "form-control", placeholder: 'Insira um nome para o produto' %>
+  </div>
+  <div class="col-xl-2 col-md-4 col-sm-6">
+    <%= form.label :category_id, "Categoria", class: 'form-label' %>
+    <%= form.collection_select :category_id, Category.select("id, title"), :id, :title, {prompt: "Selecione a categoria"}, {class: "form-control" } %>
+  </div>
+  <div class="col-xl-2 col-md-4 col-sm-4">
+    <%= form.label :price, "Preço", class: "form-label" %>
+      <%= form.number_field :price, class: "form-control", placeholder: 'Insira o preço' %>
+  </div>
+  <div class="col-xl-8"><br/>
+    <%= form.label :description, "Descrição", class: 'form-label' %>
+    <%= form.text_area :description, class: "form-control", placeholder: 'O que é este produto?', rows: 3 %>
+  </div>
+  <%= content_tag :div, class: 'form-group' do %>
+      <%= check_box_tag :restore, class: "checkbox" %>
+      Restaurar registro eliminado
+  <% end if product.discarded? %>
   
-  <%= form_with(model: product, class: 'row g-3') do |form| %>
-    <div class="col-md-4">
-      <%= form.label :name, "Nome", class: 'form-label' %>
-      <%= form.text_field :name, class: "form-control", placeholder: 'Insira um nome para o produto' %>
-    </div>
-    <div class="col-md-4">
-      <%= form.label :category_id, "Categoria", class: 'form-label' %>
-      <%= form.collection_select :category_id, Category.select("id, title"), :id, :title, {prompt: "Selecione a categoria"}, {class: "form-control" } %>
-    </div>
-    <div class="col-md-4">
-      <%= form.label :price, "Preço", class: "form-label" %>
-        <%= form.number_field :price, class: "form-control", placeholder: 'Insira o preço' %>
-    </div>
-    <div class="col-12">
-      <%= form.label :description, "Descrição", class: 'form-label' %>
-      <%= form.text_area :description, class: "form-control", placeholder: 'O que é este produto?' %>
-    </div>
-    
-    
-    <br>
-    <%= content_tag :div, class: 'form-group' do %>
-        <%= check_box_tag :restore, class: "checkbox" %>
-        Restaurar registro eliminado
-    <% end if product.discarded? %>
-
-    <div class="col-12">
-      <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, products_path, class: "btn btn-secondary icons-margin" %>
-      <%= form.submit 'Registrar', class: "btn btn-primary icons-margin" %>
-    </div>
-  <% end %>
+  <div class="col-12"><br/>
+    <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, products_path, class: "btn btn-secondary icons-margin" %>
+    <%= form.submit 'Registrar', class: "btn btn-secondary" %>
+  </div>
+<% end %>
 
 
 
