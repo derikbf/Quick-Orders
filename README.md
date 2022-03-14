@@ -45,9 +45,9 @@ Create a .env file on your rails root directory and configure the following envi
 ![Config-file-env](https://uploaddeimagens.com.br/images/003/738/298/full/env.png)
 
 and than execute 
-``
+```
 rails db:setup
-``
+```
 
 4. Create admin user with `rails create_user`. 
 Enter rails console
