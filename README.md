@@ -4,6 +4,7 @@ The project proposal is a ordering system for a restaurant.
 
 # Project
 The project was built following the business rules from the Hackathon challenge.
+
 ![quick-orders](https://i.imgur.com/cTwawtl.gif)
 
 # Technology stack
@@ -40,6 +41,7 @@ yarn install || npm install
 3. Database configuration 
 The .env is responsible for configuring the postgres database.
 Create a .env file on your rails root directory and configure the following environment variables:
+
 ![Config-file-env](https://uploaddeimagens.com.br/images/003/738/298/full/env.png)
 
 and than execute 
