@@ -37,17 +37,17 @@ bundle install
 yarn install || npm install
 ``` 
 
-3. Configure .env file with your database information. 
-<p> Create the .env file and configure:
-
+3. Database configuration 
+The .env is responsible for configuring the postgres database.
+Create a .env file on your rails root directory and configure the following environment variables:
 ![Config-file-env](https://uploaddeimagens.com.br/images/003/738/298/full/env.png)
 
-4. Start the project
-```
-rails s
-```
+and than execute 
+``
+rails db:setup
+``
 
-5. Create admin user with `rails create_user`. 
+4. Create admin user with `rails create_user`. 
 Enter rails console
 
 ```
@@ -59,3 +59,8 @@ User.create!(first_name: "Abc", last_name: "def", email: "abc@gmail.com", role: 
 ```
 Role Options:
 admin || mesero || chef 
+
+5. Start the project
+```
+rails s
+```
