@@ -1,25 +1,22 @@
-<div class="container py-3 h-100">
-  <div class="card bg-dark shadow">
-    <div class="card-header ">
-      <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <h2 class="text-lighter">Categoria: <strong><%= @category.title %></strong></h2>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="d-flex justify-content-end">
-            <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, categories_path, class: "btn btn-secondary text-white icons-margin"  %>
-            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_category_path(@category),class: "btn btn-secondary icons-margin" if can? :edit, Category %>
-            <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, @category, class: "btn btn-danger ", 
-                        method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, Category %>           
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <p class="font-size-info">
-        <strong><%= @category.products.count %></strong> produtos pertecem à esta categoria.
-      </p>
-    </div>
+<div class="navbar navbar-light navbar-expand bg-gray shadow mb-4 pt-3 pb-3 topbar static-top">
+  <div class="container-fluid">
+    <h2 class="mb-0">Categoria: <strong><%= @category.title %></strong></h2>
+    <ul class="navbar-nav flex-nowrap ms-auto">
+      <li class="nav-item mx-1">
+        <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, categories_path, class: "btn btn-secondary text-white icons-margin"  %>
+      </li>
+      <li class="nav-item mx-1">
+        <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_category_path(@category),class: "btn btn-secondary icons-margin" if can? :edit, Category %>
+      </li>
+      <li>
+        <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, @category, class: "btn btn-danger ", 
+                        method: :delete, data: { confirm: 'Tem certeza?' } if can? :destroy, Category %> 
+      </li>
+    </ul>
   </div>
 </div>
-
+<div class="container">
+  <p class="h4 p-2">
+    <strong><%= @category.products.count %></strong> produtos pertencem à esta categoria.
+  </p>
+</div>

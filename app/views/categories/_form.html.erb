@@ -1,17 +1,14 @@
 <%= form_with(model: category) do |form| %>
-
-  <div class="form-group">
-    <%= form.label :title, class: 'form-label' %>
-    <%= form.text_field :title, class: "form-control", placeholder: 'Ingrese o nome' %>
+  <div class="form-group col-lg-4 col-md-6">
+    <%= form.label :title, class: 'form-label h4' %>
+    <%= form.text_field :title, class: "form-control", placeholder: 'Colocar título da categoria' %>
   </div>
   <br>
   <%= content_tag :div, class: 'form-group' do %>
     <%= check_box_tag :restore, class: "checkbox" %>
     Restaurar registro eliminado
   <% end if category.discarded? %>
-  <br>
-  <div class="form-group">
     <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, categories_path, class: "btn btn-secondary icons-margin" %>
     <%= form.submit "Registrar", class: "btn btn-secondary" %>
-  </div>
 <% end %>
+

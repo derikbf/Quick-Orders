@@ -1,49 +1,48 @@
-<div class="container py-5 h-100">
-  <div class="card bg-dark shadow">
-    <div class="card-header bg-dark m-3 p-3">
-      <h3 class="d-inline-block">Pedido #<%= @order.id %> | </h3>
-      <p class="lead d-inline-block">
-        <strong><%= Order.human_attribute_name(:status) %>:</strong>
-        <span class="badge <%= status_klass(@order.status) %>"><%= @order.status_name %></span>
-      </p>
-        <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6">
-            <% if @order.ready? %>
-              <%= link_to "MARCAR COMO ENTREGUE", report_status_order_path(@order.id, status: :finished), method: :patch, class: 'btn btn-success' %>
-              <br>
-            <% end %>
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-6">
-            <% unless @order.finished? %>
-              <%= link_to "CANCELAR PEDIDO", report_status_order_path(@order.id, status: :canceled), method: :patch, data: { confirm: "Tem certeza?" } , 
-                                                                      class: "btn btn-danger" unless @order.canceled? %>
-              <br>
-            <% end %>
-          </div>
-        </div>
-      
-    </div>
-    <div class="card-body m-3" style="margin-top:-4px">
+<div class="navbar navbar-light navbar-expand bg-gray shadow mb-4 pt-3 pb-3 topbar static-top">
+  <div class="container-fluid">
+    <h2 class="mb-0"><strong>Pedido #<%= @order.id %></strong></h2><h3 class="d-inline ms-3 pt-2"><span class="badge rounded-pill <%= status_klass(@order.status) %> ms-2 "><%= @order.status_name %></span></h3>
     
-      <p class="lead">
-        <strong><%= Order.human_attribute_name(:client_name) %>:</strong>
-        <%= @order.client_name %>
-      </p>
-      
-      <p class="lead">
-        <strong><%= Order.human_attribute_name(:table) %>:</strong>
-        <%= @order.table %>
-      </p>
-       
-      <p class="lead">
-        <strong><%= Order.human_attribute_name(:user) %>:</strong>
-        <%= @order.user.name %>
-      </p>
+    <ul class="navbar-nav flex-nowrap ms-auto">
+      <li class="nav-item mx-1">
+        <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, orders_path, class: "btn btn-secondary text-white"  %>
+      </li>
+      <li class="nav-item mx-1">
+        <% unless @order.canceled? || @order.finished? %>
+          <%= link_to 'Edita', edit_order_path(@order), class: "btn btn-secondary icons-margin" if (can? :edit, Order) %>
+        <% end %>
+      </li>
+      <li>
+        <% if @order.ready? %>
+          <%= link_to "MARCAR COMO ENTREGUE", report_status_order_path(@order.id, status: :finished), method: :patch, class: 'btn btn-success' %>
+        <% else %>
+          <%= link_to "CANCELAR PEDIDO", report_status_order_path(@order.id, status: :canceled), method: :patch, data: { confirm: "Tem certeza?" }, class: "btn btn-danger" unless @order.canceled? %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
 
+<div class="container">
+  <div class="row ps-3">
+    <div class="col-xl-4">
+      <p class="h4"><%= Order.human_attribute_name(:client_name) %>:
+      <span class="badge bg-gray round-pill"><%= @order.client_name %></span></p>
+    </div>
+    <div class="col-xl-2">
+     <p class="h4"><%= Order.human_attribute_name(:table) %>:
+     <span class="badge bg-gray round-pill"><%= @order.table %></span></p>
+    </div>
+    <div class="col-xl-3">
+      <p class="h4"><%= Order.human_attribute_name(:user) %>:
+      <span class="badge bg-gray round-pill"><%= @order.user.name %></span></p>
+    </div>
+  </div>
+  <br/>
+  <div class="row ps-3">
+    <div class="col-10">
       <h3>Itens</h3>
-      <hr class="divisor">
       <div class="table-responsive">
-        <table class="table table-dark table-striped">
+        <table class="table bg-gray-darker text-white table-borderless">
           <thead>
             <tr>
               <th><%= OrderProduct.human_attribute_name(:product_id) %></th>
@@ -62,11 +61,8 @@
           </tbody>
         </table>
       </div>
-    <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, orders_path, class: "btn btn-secondary text-white icons-margin"  %>
-    <% unless @order.canceled? || @order.finished? %>
-      <%= link_to 'Edita', edit_order_path(@order), class: "btn btn-secondary" if (can? :edit, Order) %>
-    <% end %>
     </div>
   </div>
 </div>
-  
+
+

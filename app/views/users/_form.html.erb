@@ -1,4 +1,4 @@
-<%= form_with(model: user, class: 'row g-3') do |f| %>
+<%= form_with(model: user, class: 'row px-4') do |f| %>
   <div class="col-md-4">
     <%= f.label :first_name, class: 'form-label' %>
     <%= f.text_field :first_name, class: "form-control", placeholder: 'Nome do funcionário' %>
@@ -8,17 +8,17 @@
     <%= f.text_field :last_name, class: "form-control", placeholder: 'Sobrenome do funcionário' %>
   </div>
   
-  <div class="col-md-4">
+  <div class="col-md-4 col-xl-2">
     <%= f.label :role, class: 'form-label' %>
     <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role), {} , class: "form-control" %>
   </div>
 
-  <div class="col-md-12">
+  <div class="col-md-12 col-xl-3 mt-3">
     <%= f.label :email, class: 'form-label' %>
     <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: 'Email do Funcionário'  %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 col-xl-3 mt-3">
     <%= f.label :password, class: 'form-label' %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres minimos)</em>
@@ -26,16 +26,13 @@
     <%= f.password_field :password, {autocomplete: "password", class: "form-control", placeholder: 'Minimo 6 dígitos' }%>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 col-xl-3 mt-3">
     <%= f.label :password_confirmation, class: 'form-label' %>
     <%= f.password_field :password_confirmation, { autocomplete: "password", class: "form-control" }%>
   </div>
 
-
-  
-  <div class="col-12">
+  <div class="col-12"><br/>
     <%= link_to '<i class="fa-solid fa-arrow-left"></i>'.html_safe, users_path, class: "btn btn-secondary icons-margin" %>
     <%= f.submit "Registrar" , class: "btn btn-secondary" %>
   </div>
-
 <% end %>
